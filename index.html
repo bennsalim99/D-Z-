@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dizi Platformu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 50px;
+            max-width: 1200px;
+        }
+        nav {
+            margin-bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            width: 100%;
+            text-align: center;
+        }
+        .episode, .trailer {
+            margin: 20px 0;
+        }
+        .episode img, .trailer img {
+            width: 300px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .episode img:hover, .trailer img:hover {
+            transform: scale(1.05);
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-top: 56.25%;
+            padding-bottom: 0;
+            box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+            margin-top: 1.6em;
+            margin-bottom: 0.9em;
+            overflow: hidden;
+            border-radius: 8px;
+            will-change: transform;
+            display: none;
+        }
+        iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: none;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e53935;
+        }
+        .likes-views {
+            margin: 10px 0;
+        }
+        .date {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dizi Platformu - ATEŞTEN KAFES</h1>
+
+        <!-- Menü Başlıkları -->
+        <nav>
+            <a id="fragmanlarLink">Fragmanlar</a>
+            <a id="bolumlerLink">Bölümler</a>
+        </nav>
+
+        <!-- Fragmanlar Bölümü -->
+        <div id="fragmanlarSection" class="section trailer">
+            <h2>1. Bölüm Fragmanı</h2>
+            <div class="video-container" id="fragmanVideo">
+                <iframe loading="lazy" src="https://www.canva.com/design/DAGSfvfn3tI/TO3VwevsMle6A5LMqVe6_A/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+            </div>
+            <div class="likes-views">
+                <span>👁️ 3,7M İzlenme</span> | <span>👍 18K Beğeni</span>
+            </div>
+            <div class="date">Tarih: 01.09.2024</div>
+        </div>
+
+        <!-- Bölümler Bölümü -->
+        <div id="bolumlerSection" class="section episode" style="display:none;">
+            <h2>ATEŞTEN KAFES - Bölüm 1</h2>
+            <div class="video-container" id="bolumVideo">
+                <iframe loading="lazy" src="https://www.canva.com/design/DAGSfXivQS4/2Xj4y5elvSCmCF8EZSkJsw/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+            </div>
+            <div class="likes-views">
+                <span>👁️ 1,5M İzlenme</span> | <span>👍 33K Beğeni</span>
+            </div>
+            <div class="date">Tarih: 03.10.2024</div>
+        </div>
+
+        <!-- Ana Sayfa Butonu -->
+        <div class="button-container">
+            <button id="homeButton" style="display:none;">ANA SAYFA</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Fragmanlar ve Bölümler arasında geçiş yaparken videoları kapat
+        document.getElementById('fragmanlarLink').onclick = function() {
+            // Fragmanlar bölümünü göster
+            document.getElementById('fragmanlarSection').style.display = 'block';
+            document.getElementById('bolumlerSection').style.display = 'none';
+
+            // Bölüm videosunu kapat
+            document.getElementById('bolumVideo').style.display = 'none';
+
+            // Fragman videosunu aç
+            document.getElementById('fragmanVideo').style.display = 'block';
+        }
+
+        document.getElementById('bolumlerLink').onclick = function() {
+            // Bölümler bölümünü göster
+            document.getElementById('fragmanlarSection').style.display = 'none';
+            document.getElementById('bolumlerSection').style.display = 'block';
+
+            // Fragman videosunu kapat
+            document.getElementById('fragmanVideo').style.display = 'none';
+
+            // Bölüm videosunu aç
+            document.getElementById('bolumVideo').style.display = 'block';
+        }
+
+        // "ANA SAYFA" butonuna tıklandığında tüm videoları kapat
+        document.getElementById('homeButton').onclick = function() {
+            document.getElementById('fragmanVideo').style.display = 'none';
+            document.getElementById('bolumVideo').style.display = 'none';
+            document.getElementById('homeButton').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
